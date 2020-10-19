@@ -1,4 +1,4 @@
-package vn.evnhcmc.itc.hes.portal.restapi;
+package vn.evnhcmc.itc.asset.portal.restapi;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
