@@ -31,7 +31,4 @@ build/
 
 ### VS Code ###
 .vscode/
-/portal-application/node/node_modules/
-/portal-application/node/
-META-INF/
-/logs/
+/src/main/resources/static/

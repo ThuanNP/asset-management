@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<configuration monitoringInterval="30" status="warn">
+    <!-- monitorInterval: automatic reload every 30 seconds on changes -->
+    <!-- status: log4j2 internal logging (not for the app) -->
+    <!-- fantastic: properties within config-file finally in log4j2
+    <img draggable="false" class="emoji" alt="🙂" src="https://s.w.org/images/core/emoji/2.3/svg/1f642.svg"> -->
+    <Properties>
+        <Property name="filename-ws-parent">logs/ws.parent.log</Property>
+        <Property name="filename-ws-general">logs/general/ws.general.log</Property>
+        <Property name="filename-ws-exception">logs/exception/ws.exception.log</Property>
+    </Properties>
+    <Appenders>
+        <RollingFile name="appender-ws-parent" fileName="${filename-ws-parent}">
+            <FilePattern>logs/%d{yyyy}-%i-parent.log</FilePattern>
+            <PatternLayout charset="UTF-8">
+                <Pattern>%d{yyyy-MMM-dd HH:mm:ss a} [%t] %-5level %logger{36} - %msg%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="20 MB"/>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+            <DefaultRolloverStrategy max="20"/>
+        </RollingFile>
+        <RollingFile name="appender-ws-general" fileName="${filename-ws-general}">
+            <FilePattern>logs/general/%d{yyyy}-%i.general.log</FilePattern>
+            <PatternLayout charset="UTF-8">
+                <Pattern>%d{yyyy-MMM-dd HH:mm:ss a} [%t] %-5level %logger{36} - %msg%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="20 MB"/>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+            <DefaultRolloverStrategy max="20"/>
+        </RollingFile>
+        <RollingFile name="appender-ws-exception" fileName="${filename-ws-exception}">
+            <FilePattern>logs/exception/%d{yyyy}-%i.exception.log</FilePattern>
+            <PatternLayout charset="UTF-8">
+                <Pattern>%d{yyyy-MMM-dd HH:mm:ss a} [%t] %-5level %logger{36} - %msg%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="20 MB"/>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+            <DefaultRolloverStrategy max="20"/>
+        </RollingFile>
+        <Console name="appender-ws-console" target="SYSTEM_OUT">
+            <PatternLayout charset="UTF-8" disableAnsi="false">
+                <pattern>%d{yyyy-MMM-dd HH:mm:ss a} [%highlight{%-5level}] [%t] %logger{36}: %msg%n%throwable</pattern>
+            </PatternLayout>
+        </Console>
+    </Appenders>
+    <Loggers>
+        <Root level="DEBUG">
+            <AppenderRef ref="appender-ws-console"/>
+            <AppenderRef ref="appender-ws-parent"/>
+        </Root>
+        <!-- additivity means, that parent-logger (in every case the root-logger) will also get the chance to log this stuff -->
+        <Logger name="hes-management-portal.ws.general" additivity="TRUE" level="INFO">
+            <AppenderRef ref="appender-ws-general" level="INFO"/>
+        </Logger>
+        <Logger name="hes-management-portal.ws.exception" additivity="TRUE" level="INFO">
+            <AppenderRef ref="appender-ws-exception" level="INFO"/>
+        </Logger>
+        <!--SKIN-->
+        <Logger name="org.hibernate" additivity="TRUE" level="INFO"/>
+        <Logger name="org.springframework" level="WARN"/>
+    </Loggers>
+</configuration>
