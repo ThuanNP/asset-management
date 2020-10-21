@@ -64,7 +64,7 @@
               <goal>npm</goal>
             </goals>
             <configuration>
-              <arguments>run-script build:watch</arguments>
+              <arguments>${angular.build.script}</arguments>
             </configuration>
           </execution>
         </executions>
