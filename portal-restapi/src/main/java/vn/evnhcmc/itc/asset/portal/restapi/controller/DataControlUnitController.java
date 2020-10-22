@@ -5,7 +5,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import vn.evnhcmc.itc.asset.portal.restapi.common.exception.ResourceNotFoundException;
-import vn.evnhcmc.itc.asset.portal.restapi.domain.DataControlUnit;
+import vn.evnhcmc.itc.asset.portal.restapi.model.DataControlUnit;
 import vn.evnhcmc.itc.asset.portal.restapi.service.DataControlUnitService;
 
 import java.util.List;
