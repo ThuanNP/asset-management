@@ -14,7 +14,7 @@ import java.util.Date;
 @Entity
 @Table(name = "DATA_CONTROL_UNIT", schema = "HCMC_ASSET_TRACKING")
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-public class DataControlUnit extends BaseEntity {
+public class DataControlUnitEntity extends BaseEntity {
     @Column(name = "DCU_INDEX")
     private String dcuIndex;
     @Column(name = "DCU_CODE")

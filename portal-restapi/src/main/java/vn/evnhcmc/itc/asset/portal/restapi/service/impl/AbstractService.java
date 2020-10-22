@@ -14,60 +14,60 @@ import java.util.Optional;
 @Transactional
 public abstract class AbstractService <T extends Serializable, K> implements Operations<T, K> {
 
-    protected JpaRepository<T, K> repository;
+    protected JpaRepository<T, K> _repository;
 
     public AbstractService(JpaRepository<T, K> repository) {
-        this.repository = repository;
+        _repository = repository;
     }
 
     @Override
     @Transactional(readOnly = true)
     public Optional<T> findById(final K id) {
-        return repository.findById(id);
+        return _repository.findById(id);
     }
 
     @Override
     public List<T> findAll() {
-        return repository.findAll();
+        return _repository.findAll();
     }
 
     @Override
     public Page<T> findAllPaging(Pageable pageable) {
-        return repository.findAll(pageable);
+        return _repository.findAll(pageable);
     }
 
     @Override
     public T save(T t) {
-        return repository.save(t);
+        return _repository.save(t);
     }
 
     @Override
     public T saveAndFlush(T t) {
-        return repository.saveAndFlush(t);
+        return _repository.saveAndFlush(t);
     }
 
     @Override
     public void delete(T t) {
-        repository.delete(t);
+        _repository.delete(t);
     }
 
     @Override
     public void deleteById(K id) {
-        repository.deleteById(id);
+        _repository.deleteById(id);
     }
 
     @Override
     public List<T> saveAll(Iterable<T> lst) {
-        return repository.saveAll(lst);
+        return _repository.saveAll(lst);
     }
 
     @Override
     public void deleteAll(Iterable<T> lst) {
-        repository.deleteAll(lst);
+        _repository.deleteAll(lst);
     }
 
     @Override
     public T findOne(K id) {
-        return repository.findById(id).orElseThrow(ResourceNotFoundException::new);
+        return _repository.findById(id).orElseThrow(ResourceNotFoundException::new);
     }
 }
